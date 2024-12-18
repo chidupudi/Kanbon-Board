@@ -1,4 +1,7 @@
 import React from 'react';
+import { IconButton, Avatar } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 const Header = () => {
   return (
@@ -7,9 +10,13 @@ const Header = () => {
         <h1>Kanban Board</h1>
       </div>
       <div style={styles.right}>
-        <button style={styles.iconButton} title="Profile">
-          👤
-        </button>
+        <IconButton style={styles.iconButton} title="Profile">
+          <PersonIcon style={styles.icon} />
+        </IconButton>
+        <IconButton style={styles.iconButton} title="Feedback">
+          <FeedbackIcon style={styles.icon} />
+        </IconButton>
+        <Avatar alt="User" src="/static/images/avatar/1.jpg" style={styles.avatar} />
       </div>
     </header>
   );
@@ -45,9 +52,14 @@ const styles = {
     background: 'none',
     border: 'none',
     color: '#fff',
-    fontSize: '1.5rem',
     marginLeft: '10px',
     cursor: 'pointer',
+  },
+  icon: {
+    fontSize: '1.5rem',
+  },
+  avatar: {
+    marginLeft: '10px',
   },
 };
 

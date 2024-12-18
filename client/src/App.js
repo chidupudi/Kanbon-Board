@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import Home from './pages/Home'; // Adjust the import based on your folder structure
 import SignupForm from './pages/Signup';
 import LoginPage from './pages/Login';
+import WelcomePage from './pages/Welcome';
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     <Router>
       <DndProvider backend={HTML5Backend}> 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
