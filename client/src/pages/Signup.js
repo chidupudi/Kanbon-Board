@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import { TextField, Button, Grid, Typography, Container, Box } from "@mui/material";
-import { Link } from "react-router-dom";  // Import Link for navigation
+import { Link, useNavigate } from "react-router-dom"; // Added useNavigate for redirection
+import axios from "axios"; // Import Axios for API requests
 
 const SignupForm = () => {
+  const navigate = useNavigate(); // To navigate after signup
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +16,7 @@ const SignupForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState(""); // For success/error messages
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,10 +41,18 @@ const SignupForm = () => {
     return Object.values(tempErrors).every((x) => x === "");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted:", formData);
+      try {
+        // Sending the signup data to the backend
+        const response = await axios.post("http://localhost:5000/signup", formData);
+        setMessage(response.data.message);
+        setTimeout(() => navigate("/login"), 2000); // Redirect to login after success
+      } catch (error) {
+        const errorMessage = error.response?.data?.message || "An error occurred.";
+        setMessage(errorMessage);
+      }
     }
   };
 
@@ -169,6 +180,20 @@ const SignupForm = () => {
               </Grid>
             </Grid>
           </form>
+
+          {/* Message Section */}
+          {message && (
+            <Typography
+              variant="body1"
+              sx={{
+                textAlign: "center",
+                marginTop: 2,
+                color: message.includes("success") ? "green" : "red",
+              }}
+            >
+              {message}
+            </Typography>
+          )}
 
           {/* Redirect to Login Page */}
           <Typography

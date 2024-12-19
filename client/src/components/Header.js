@@ -2,21 +2,24 @@ import React from 'react';
 import { IconButton, Avatar } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { Link } from 'react-router-dom';  // Import Link for routing
 
 const Header = () => {
   return (
     <header style={styles.header}>
       <div style={styles.left}>
-        <h1>Kanban Board</h1>
+        {/* Link component wraps the Kanban title to make it clickable */}
+        <Link to="/home" style={styles.link}>
+          <h1>Kanban Board</h1>
+        </Link>
       </div>
       <div style={styles.right}>
-        <IconButton style={styles.iconButton} title="Profile">
-          <PersonIcon style={styles.icon} />
-        </IconButton>
         <IconButton style={styles.iconButton} title="Feedback">
           <FeedbackIcon style={styles.icon} />
         </IconButton>
-        <Avatar alt="User" src="/static/images/avatar/1.jpg" style={styles.avatar} />
+        <IconButton style={styles.iconButton} title="Profile">
+          <PersonIcon style={styles.icon} />
+        </IconButton>
       </div>
     </header>
   );
@@ -60,6 +63,12 @@ const styles = {
   },
   avatar: {
     marginLeft: '10px',
+  },
+  // Added styling for the Link to remove default link styles
+  link: {
+    textDecoration: 'none',  // Removes underline from the link
+    color: '#fff',  // Make the title white
+    cursor: 'pointer',  // Change cursor to pointer on hover
   },
 };
 

@@ -6,6 +6,7 @@ import Home from './pages/Home'; // Adjust the import based on your folder struc
 import SignupForm from './pages/Signup';
 import LoginPage from './pages/Login';
 import WelcomePage from './pages/Welcome';
+import FeedbackPage from './pages/Feedback';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
